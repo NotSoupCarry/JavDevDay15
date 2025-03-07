@@ -2,12 +2,16 @@ CREATE SCHEMA if NOT EXISTS  ospedaleDB;
 use ospedaleDB;
 
 -- Creazione della tabella Persona
-CREATE TABLE Persona (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100),
-    cognome VARCHAR(100),
-    ruolo ENUM('Medico', 'Paziente') NOT NULL
-);
+CREATE TABLE `persona` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) DEFAULT NULL,
+  `cognome` varchar(100) DEFAULT NULL,
+  `ruolo` enum('Medico','Paziente') NOT NULL,
+  `data_creazione` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `creato_da` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ;
+
 
 -- Creazione della tabella Medico
 CREATE TABLE Medico (
@@ -24,3 +28,17 @@ CREATE TABLE Paziente (
     codice_paziente INT UNIQUE,
     FOREIGN KEY (persona_id) REFERENCES Persona(id)
 );
+
+DELIMITER $$
+
+CREATE TRIGGER before_insert_persona
+BEFORE INSERT ON persona
+FOR EACH ROW
+BEGIN
+    -- Imposta il campo creato_da uguale a id, che è auto-incrementato
+    IF NEW.creato_da IS NULL THEN
+        SET NEW.creato_da = NEW.id;
+    END IF;
+END $$
+
+DELIMITER ;

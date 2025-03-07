@@ -5,8 +5,8 @@ import Enums.Ruolo;
 public class Paziente extends Persona {
     private int codicePaziente;
 
-    public Paziente(String nome, String cognome, Ruolo ruolo, int codicePaziente) {
-        super(nome, cognome, ruolo);
+    public Paziente(int id, String nome, String cognome, Ruolo ruolo, int IDCreatoDa, int codicePaziente) {
+        super(id, nome, cognome, ruolo, IDCreatoDa);
         this.codicePaziente = codicePaziente;
     }
 

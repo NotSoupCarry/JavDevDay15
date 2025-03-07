@@ -1,6 +1,11 @@
 package Utils;
+
 import java.util.Scanner;
 import java.util.Date;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -75,5 +80,38 @@ public class Controlli {
             }
         }
         return data;
+    }
+
+    // Metodo per controllare l'input codice paziente sia univoco
+    public static int controlloCodicePazienteUnivoco(Scanner scanner) {
+        int codicePaziente;
+
+        while (true) {
+            codicePaziente = Controlli.controlloInputInteri(scanner);
+
+            // Verifica che il codice paziente non sia già presente nel database
+            String query = "SELECT COUNT(*) FROM Paziente WHERE codice_paziente = ?";
+
+            try (Connection conn = DBContext.connessioneDatabase();
+                    PreparedStatement stmt = conn.prepareStatement(query)) {
+
+                stmt.setInt(1, codicePaziente);
+
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    // Se il conteggio è maggiore di 0, significa che il codice esiste già
+                    if (rs.getInt(1) > 0) {
+                        System.out.print("Codice paziente già presente.\ninserisci un altro codice: ");
+                    } else {
+                        // Codice unico, esci dal loop
+                        break;
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return codicePaziente;
     }
 }
