@@ -34,7 +34,7 @@ class MyStreamProcessor extends OldStreamProcessor implements StreamProcessor {
 
     // @SafeVarargs + @SuppressWarnings per gestire parametri varargs di tipo generico
     @SafeVarargs
-    @SuppressWarnings("unchecked")
+    //@SuppressWarnings("unchecked")
     public final Stream<String> combineAll(Stream<String>... streams) {
         System.out.println("[SAFEVARARGS] combineAll in MyStreamProcessor");
         // Concateniamo tutti gli Stream passati come parametri
