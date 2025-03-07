@@ -41,6 +41,6 @@ public abstract class Persona {
     }
 
     // Metodo astratto
-    public abstract void stampaRuolo();
+    public abstract void stampaDettagli();
 }
 

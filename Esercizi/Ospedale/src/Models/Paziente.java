@@ -17,7 +17,11 @@ public class Paziente extends Persona {
     }
 
     @Override
-    public void stampaRuolo() {
+    public void stampaDettagli() {
         System.out.println("Ruolo: Paziente");
+        System.out.println("Nome: " + getNome());
+        System.out.println("Cognome: " + getCognome());
+        System.out.println("Codice Paziente: " + codicePaziente + "\n");
     }
 }
+
