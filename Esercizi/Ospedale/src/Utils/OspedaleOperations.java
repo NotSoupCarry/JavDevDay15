@@ -35,11 +35,11 @@ public class OspedaleOperations {
 
                 if ("Medico".equalsIgnoreCase(ruolo)) {
                     String specializzazione = rs.getString("specializzazione");
-                    Persona medico = new Medico(nome, cognome, Persona.Ruolo.MEDICO, specializzazione);
+                    Persona medico = new Medico(nome, cognome, Enums.Ruolo.MEDICO, specializzazione);
                     medici.add(medico);
                 } else if ("Paziente".equalsIgnoreCase(ruolo)) {
                     int codicePaziente = rs.getInt("codice_paziente");
-                    Persona paziente = new Paziente(nome, cognome, Persona.Ruolo.PAZIENTE, codicePaziente);
+                    Persona paziente = new Paziente(nome, cognome, Enums.Ruolo.PAZIENTE, codicePaziente);
                     pazienti.add(paziente);
                 }
             }

@@ -18,16 +18,16 @@ public class OspedaleApp {
             scanner.nextLine();
 
             switch (scelta) {
-                case 1:
+                case 1: // mostra utenti
                     OspedaleOperations.stampaTutti();
                     break;
-                case 2:
+                case 2: // inserisci un medico
                     OspedaleOperations.inserisciMedico(scanner);
                     break;
-                case 3:
+                case 3: // inserisci un paziente
                     OspedaleOperations.inserisciPaziente(scanner);
                     break;
-                case 4:
+                case 4: // esci
                     System.out.println("Chiusura del programma.");
                     exitMainMenu = true;
                     break;

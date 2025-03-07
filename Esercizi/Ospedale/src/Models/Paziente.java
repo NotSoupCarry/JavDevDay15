@@ -1,5 +1,7 @@
 package Models;
 
+import Enums.Ruolo;
+
 public class Paziente extends Persona {
     private int codicePaziente;
 

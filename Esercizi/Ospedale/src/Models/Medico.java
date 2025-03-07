@@ -1,5 +1,7 @@
 package Models;
 
+import Enums.Ruolo;
+
 public class Medico extends Persona {
     private String specializzazione;
 

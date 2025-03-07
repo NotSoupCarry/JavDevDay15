@@ -1,13 +1,12 @@
 package Models;
 
+import Enums.Ruolo;
+
 public abstract class Persona {
+    public static final String Ruolo = null;
     private String nome;
     private String cognome;
     private Ruolo ruolo;
-
-    public enum Ruolo {
-        MEDICO, PAZIENTE;
-    }
 
     public Persona(String nome, String cognome, Ruolo ruolo) {
         this.nome = nome;
