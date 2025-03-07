@@ -1,0 +1,26 @@
+CREATE SCHEMA if NOT EXISTS  ospedaleDB;
+use ospedaleDB;
+
+-- Creazione della tabella Persona
+CREATE TABLE Persona (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100),
+    cognome VARCHAR(100),
+    ruolo ENUM('Medico', 'Paziente') NOT NULL
+);
+
+-- Creazione della tabella Medico
+CREATE TABLE Medico (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    persona_id INT,
+    specializzazione VARCHAR(100),
+    FOREIGN KEY (persona_id) REFERENCES Persona(id)
+);
+
+-- Creazione della tabella Paziente
+CREATE TABLE Paziente (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    persona_id INT,
+    codice_paziente INT UNIQUE,
+    FOREIGN KEY (persona_id) REFERENCES Persona(id)
+);
